@@ -46,11 +46,16 @@ def predict():
 
         features = data["features"]
 
-        if not isinstance(features, list) or len(features) != 30:
+        if not isinstance(features, list) or len(features) == 0:
             return jsonify({
-                "error": "Exactly 30 feature values are required."
+                "error": "Features list cannot be empty."
             }), 400
 
+        # If user submitted fewer than 30 features, pad the rest with 0.0
+        if len(features) < 30:
+            features = features + [0.0] * (30 - len(features))
+        elif len(features) > 30:
+            features = features[:30]
         # Convert input values into numbers
         try:
             raw_data = np.asarray(features, dtype=np.float64)

@@ -99,12 +99,25 @@
             
             // Call prediction endpoint
             try {
-                const response = await fetch('/predict', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ features: values })
-                });
-                const result = await response.json();
+    const response = await fetch('/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ features: values })
+    });
+
+    const text = await response.text();
+    const result = text ? JSON.parse(text) : {};
+
+    if (!response.ok || result.error) {
+        alert("Error: " + (result.error || `Server returned ${response.status}`));
+        return;
+    }
+
+    // Update UI with result.class_name and result.confidence
+    console.log("Prediction:", result);
+} catch (err) {
+    alert("Request failed: " + err.message);
+}
 
                 if (result.error) {
                     alert('Error: ' + result.error);
