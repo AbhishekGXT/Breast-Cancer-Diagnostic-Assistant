@@ -75,10 +75,9 @@ def predict():
         scaled_data = scaler.transform(raw_data)
 
         # Run model inference
-        output = np.asarray(model.predict(
-            scaled_data, verbose=0
-        ))
-
+        # Low-overhead direct execution (fast & low RAM)
+        tensor_input = tf.convert_to_tensor(scaled_data, dtype=tf.float32)
+        output = model(tensor_input, training=False).numpy()
         # Handle single sigmoid output vs 2-class softmax output
         if output.shape == (1, 1):
             benign_probability = float(output[0, 0])
