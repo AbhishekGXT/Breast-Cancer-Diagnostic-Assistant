@@ -9,228 +9,250 @@
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(22, 28, 45, 0.65);
-            --border-glow: rgba(102, 16, 242, 0.25);
-            --gradient-primary: linear-gradient(135deg, #7000ff, #e83e8c);
-            --gradient-hover: linear-gradient(135deg, #8224ff, #f3559d);
-            --text-muted: #8493a5;
+            --card-bg: rgba(22, 28, 45, 0.9);
+            --border-glow: rgba(139, 92, 246, 0.4);
+            --gradient-primary: linear-gradient(135deg, #7c3aed, #ec4899);
+            --gradient-hover: linear-gradient(135deg, #8b5cf6, #f43f5e);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-subtle: #94a3b8;
         }
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 10% 20%, rgba(102, 16, 242, 0.08) 0%, transparent 40%),
-                              radial-gradient(circle at 90% 80%, rgba(232, 62, 140, 0.06) 0%, transparent 40%);
-            color: #f1f5f9;
+            background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            color: var(--text-primary);
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Animated grid background effect */
+        /* Subtle grid background */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255,255,255,0.005) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.005) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
         }
 
         .header-banner {
-            background: linear-gradient(135deg, rgba(102, 16, 242, 0.15), rgba(232, 62, 140, 0.15));
-            border: 1px solid rgba(102, 16, 242, 0.25);
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(236, 72, 153, 0.25));
+            border: 1px solid rgba(139, 92, 246, 0.35);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 3rem 1.5rem;
             margin-bottom: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .header-banner::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(102, 16, 242, 0.1) 0%, transparent 60%);
-            animation: rotateGlow 20s linear infinite;
-            pointer-events: none;
+        .header-title {
+            background: linear-gradient(135deg, #ffffff 40%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         .premium-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(16px);
             border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .premium-card:hover {
-            transform: translateY(-2px);
             border-color: var(--border-glow);
-            box-shadow: 0 15px 45px rgba(102, 16, 242, 0.15);
+        }
+
+        .section-header {
+            color: #f1f5f9;
+            font-weight: 600;
         }
 
         .form-label {
-            color: #cbd5e1;
+            color: var(--text-secondary);
             font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
         .form-control {
-            background-color: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
+            background-color: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
             border-radius: 10px;
             padding: 0.55rem 0.75rem;
-            transition: all 0.2s ease;
+            font-weight: 500;
         }
 
         .form-control:focus {
-            background-color: rgba(15, 23, 42, 0.95);
-            border-color: #e83e8c;
-            box-shadow: 0 0 0 4px rgba(232, 62, 140, 0.15);
+            background-color: rgba(15, 23, 42, 1);
+            border-color: #ec4899;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
             color: #ffffff;
         }
 
-        /* Beautiful Glowing Predict Button */
         .btn-glow {
             background: var(--gradient-primary);
-            color: white;
+            color: #ffffff;
             border: none;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(102, 16, 242, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+            transition: all 0.25s ease;
         }
 
         .btn-glow:hover {
             background: var(--gradient-hover);
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(232, 62, 140, 0.5);
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);
+            color: #ffffff;
         }
 
-        .btn-glow:active {
-            transform: scale(0.98);
-        }
-
-        /* Custom Neural Gages and Graphs */
         .progress {
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            overflow: visible;
         }
 
         .progress-bar {
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: bold;
-            transition: width 1s ease-in-out;
-            box-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
-        /* developer brand styling */
+        /* High-contrast result disclaimer card */
+        .clinical-disclaimer-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1rem;
+            line-height: 1.5;
+        }
+
+        /* High-contrast developer credit box */
         .dev-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+            background: rgba(22, 28, 45, 0.95);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 18px;
+            padding: 1.75rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .dev-badge:hover {
-            background: rgba(102, 16, 242, 0.05);
-            border-color: rgba(102, 16, 242, 0.2);
+        .credit-title {
+            color: #c4b5fd;
+            letter-spacing: 1.5px;
+            font-size: 0.78rem;
+        }
+
+        .credit-name {
+            background: linear-gradient(135deg, #ffffff, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .credit-subtext {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .social-link {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin: 0 8px;
-            transition: color 0.2s ease, transform 0.2s ease;
+            color: #f1f5f9;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .social-link:hover {
-            color: #e83e8c;
-            transform: translateY(-2px);
+            background: #ec4899;
+            color: #ffffff;
+            border-color: #ec4899;
+            transform: translateY(-3px);
+        }
+
+        .copyright-text {
+            color: var(--text-subtle);
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
     <div class="container py-5">
-        <!-- Banner Header -->
+        <!-- Header Banner -->
         <div class="header-banner text-center position-relative">
-            <div class="mb-2">
-                <i class="fa-solid fa-ribbon text-danger fs-1 animate__animated animate__pulse animate__infinite" style="filter: drop-shadow(0 0 8px rgba(220, 53, 69, 0.5));"></i>
-            </div>
-            <h1 class="fw-bold tracking-wide bg-gradient-primary">
+            <h1 class="fw-bold tracking-wide header-title mb-2">
                 🎗️ Breast Cancer Diagnostic Assistant
             </h1>
-            <p class="lead text-muted mb-0 mx-auto" style="max-width: 700px;">
-                Enter diagnostic metrics below to trigger a real-time predictive diagnostic assessment on the neural model.
+            <p class="header-subtitle mb-0 mx-auto" style="max-width: 700px;">
+                Enter tumor measurement parameters to execute real-time neural network diagnostic inference.
             </p>
         </div>
 
-        <!-- Main Layout grid -->
         <div class="row g-4 mb-5">
-            <!-- Left inputs card grid -->
+            <!-- Left: 30 Input Parameters -->
             <div class="col-lg-8">
                 <div class="premium-card p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4 border-bottom border-secondary pb-3">
-                        <h4 class="m-0 text-secondary fw-semibold">
-                            <i class="fa-solid fa-square-poll-horizontal me-2 text-primary"></i>Tumor Feature Metrics
+                    <div class="d-flex align-items-center justify-content-between mb-4 border-bottom border-secondary border-opacity-50 pb-3">
+                        <h4 class="m-0 section-header">
+                            <i class="fa-solid fa-square-poll-horizontal me-2 text-info"></i>Tumor Feature Metrics
                         </h4>
-                        <span class="badge bg-secondary opacity-75">30 Feature Variables</span>
+                        <span class="badge bg-secondary-subtle text-light border border-secondary border-opacity-50">30 Variables</span>
                     </div>
 
                     <form id="predictionForm">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3" id="inputsContainer">
-                            <!-- Inputs will be dynamically generated by JS -->
+                            <!-- Injected dynamically via JavaScript -->
                         </div>
                         <div class="text-center mt-5">
                             <button type="submit" id="submitBtn" class="btn btn-glow btn-lg px-5 py-3">
-                                <i class="fa-solid fa-calculator me-2"></i>Run Prediction Diagnostic
+                                <i class="fa-solid fa-microscope me-2"></i>Run Prediction Diagnostic
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Right Results HUD view -->
+            <!-- Right: Diagnostic Output Panel -->
             <div class="col-lg-4">
                 <div class="premium-card p-4 h-100 d-flex flex-column justify-content-between">
                     <div>
-                        <h4 class="mb-4 text-secondary border-bottom border-secondary pb-3 fw-semibold">
-                            <i class="fa-solid fa-user-doctor me-2 text-pink"></i>Diagnostic Analysis
+                        <h4 class="mb-4 section-header border-bottom border-secondary border-opacity-50 pb-3">
+                            <i class="fa-solid fa-user-doctor me-2 text-danger"></i>Diagnostic Analysis
                         </h4>
                         
-                        <!-- Neutral Waiting view -->
-                        <div id="resultPlaceholder" class="text-center py-5 text-muted">
-                            <div class="py-4">
-                                <i class="fa-solid fa-wave-square fs-1 text-secondary opacity-50 mb-3 animate__animated animate__flash animate__infinite"></i>
-                                <p class="fs-5 px-3">Adjust parameters & click "Run Prediction" for ML Inference results.</p>
-                            </div>
+                        <!-- Initial placeholder state -->
+                        <div id="resultPlaceholder" class="text-center py-5">
+                            <i class="fa-solid fa-wave-square fs-1 mb-3" style="color: var(--text-subtle);"></i>
+                            <p class="fs-5 px-2" style="color: var(--text-secondary);">
+                                Modify feature parameters and click "Run Prediction Diagnostic" to view classification.
+                            </p>
                         </div>
 
-                        <!-- Active results wrapper -->
-                        <div id="resultOutput" class="d-none animate__animated animate__fadeIn">
-                            <div id="alertBox" class="alert text-center fw-bold fs-3 py-3" role="alert"></div>
+                        <!-- Active results display -->
+                        <div id="resultOutput" class="d-none">
+                            <div id="alertBox" class="alert text-center fw-bold fs-3 py-3 border-0 shadow" role="alert"></div>
                             
                             <div class="mt-4">
-                                <h5 class="fw-semibold text-light small text-uppercase tracking-wider mb-2">Model Confidence Score:</h5>
-                                <div class="progress mt-2" style="height: 30px;">
+                                <h6 class="fw-semibold text-light text-uppercase tracking-wider mb-2">Model Confidence:</h6>
+                                <div class="progress" style="height: 28px;">
                                     <div id="confidenceBar" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
                                 </div>
                             </div>
@@ -238,48 +260,46 @@
                     </div>
 
                     <div>
-                        <p id="clinicalDisclaimer" class="mt-4 text-muted small text-center lh-sm border-top border-secondary pt-3"></p>
+                        <div id="clinicalDisclaimer" class="d-none"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Footer Signature credit block (Professional credit card) -->
+        <!-- High-Contrast Developer Credit Section -->
         <div class="row">
             <div class="col-12 text-center">
-                <div class="dev-badge d-inline-block mx-auto text-center shadow-lg">
-                    <p class="small text-muted mb-1 text-uppercase tracking-wider">Project Engineered & Maintained By</p>
-                    <h5 class="fw-bold mb-1 text-light bg-clip-text">
-                        <i class="fa-solid fa-user-shield text-primary me-2"></i>Abhishek
-                    </h5>
-                    <p class="small text-muted mb-3" style="font-size: 0.8rem;">
+                <div class="dev-badge d-inline-block mx-auto text-center">
+                    <p class="credit-title mb-1 text-uppercase fw-bold">
+                        Project Engineered & Maintained By
+                    </p>
+                    <h3 class="fw-bold mb-2 credit-name">
+                        <i class="fa-solid fa-code me-2" style="color: #a855f7;"></i>Abhishek Kumar
+                    </h3>
+                    <p class="credit-subtext mb-3">
                         Medical ML & Full-Stack System Architecture | Production Deployment
                     </p>
-                    <div class="d-flex justify-content-center">
-                        <a href="https://github.com/" target="_blank" class="social-link" title="GitHub Profile">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://github.com/AbhishekKumar" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
                             <i class="fa-brands fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/" target="_blank" class="social-link" title="LinkedIn Profile">
+                        <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
-                        <a href="mailto:your-email@gmail.com" class="social-link" title="Contact Email">
+                        <a href="mailto:your-email@example.com" class="social-link" title="Email">
                             <i class="fa-solid fa-envelope"></i>
-                        </a>
-                        <a href="https://your-portfolio.com" target="_blank" class="social-link" title="Personal Portfolio">
-                            <i class="fa-solid fa-globe"></i>
                         </a>
                     </div>
                 </div>
-                <p class="text-muted mt-3" style="font-size: 0.75rem;">
+                <p class="copyright-text mt-3 fw-medium">
                     © 2026 Web-Based Clinical Model Inference Portal. All rights reserved.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- JS scripts -->
+    <!-- JavaScript logic -->
     <script>
-        // Feature names & baseline targets
         const features = [
             { name: 'mean radius', default: 14.127 }, { name: 'mean texture', default: 19.289 },
             { name: 'mean perimeter', default: 91.969 }, { name: 'mean area', default: 654.889 },
@@ -298,26 +318,25 @@
             { name: 'worst symmetry', default: 0.290 }, { name: 'worst fractal dimension', default: 0.083 }
         ];
 
-        // Fill grid Inputs dynamically
+        // Populate inputs dynamically
         const container = document.getElementById('inputsContainer');
         features.forEach((feat, idx) => {
             const div = document.createElement('div');
             div.className = 'col feature-input';
             div.innerHTML = `
-                <label class="form-label text-capitalize fw-medium">${feat.name}</label>
+                <label class="form-label text-capitalize fw-semibold">${feat.name}</label>
                 <input type="number" step="any" class="form-control" id="feat_${idx}" value="${feat.default}" required>
             `;
             container.appendChild(div);
         });
 
-        // Diagnostic Submission Interceptor
+        // Form submit handler
         document.getElementById('predictionForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-2"></i>Analyzing Neural Network...`;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin me-2"></i>Running Neural Inference...`;
 
-            // Extract numeric sequence
             const values = features.map((_, idx) => parseFloat(document.getElementById(`feat_${idx}`).value));
 
             try {
@@ -340,7 +359,6 @@
                     return;
                 }
 
-                // Smoothly trigger results
                 document.getElementById('resultPlaceholder').classList.add('d-none');
                 document.getElementById('resultOutput').classList.remove('d-none');
 
@@ -352,22 +370,40 @@
                 confidenceBar.style.width = confidencePct;
                 confidenceBar.innerText = confidencePct;
 
+                clinicalDisclaimer.classList.remove('d-none');
+
                 if (result.prediction === 0) {
-                    alertBox.className = "alert alert-danger text-center fw-bold fs-3 py-3 border-0 shadow-sm animate__animated animate__shakeX";
-                    alertBox.innerHTML = `<i class="fa-solid fa-biohazard me-2 animate__animated animate__flash animate__infinite animate__slower"></i>Malignant`;
+                    alertBox.className = "alert alert-danger text-center fw-bold fs-3 py-3 border-0 shadow";
+                    alertBox.innerHTML = `<i class="fa-solid fa-biohazard me-2"></i>Malignant`;
                     confidenceBar.className = "progress-bar bg-danger progress-bar-striped progress-bar-animated";
-                    clinicalDisclaimer.innerHTML = `<i class="fa-solid fa-circle-exclamation text-danger me-1"></i>⚠️ <em>Patient data suggests potential malignancy. High priority medical analysis recommended.</em>`;
+                    
+                    clinicalDisclaimer.className = "clinical-disclaimer-box mt-4 text-center";
+                    clinicalDisclaimer.innerHTML = `
+                        <span class="text-danger fw-bold fs-6 d-block mb-1">
+                            <i class="fa-solid fa-circle-exclamation me-1"></i>High Priority Clinical Advisory
+                        </span>
+                        <span class="text-light">
+                            Patient data suggests potential malignancy. High priority medical analysis recommended.
+                        </span>`;
                 } else {
-                    alertBox.className = "alert alert-success text-center fw-bold fs-3 py-3 border-0 shadow-sm animate__animated animate__pulse";
+                    alertBox.className = "alert alert-success text-center fw-bold fs-3 py-3 border-0 shadow";
                     alertBox.innerHTML = `<i class="fa-solid fa-circle-check me-2"></i>Benign`;
                     confidenceBar.className = "progress-bar bg-success progress-bar-striped progress-bar-animated";
-                    clinicalDisclaimer.innerHTML = `<i class="fa-solid fa-circle-info text-success me-1"></i>✅ <em>The metrics align with non-cancerous/benign conditions. Use for clinical support.</em>`;
+                    
+                    clinicalDisclaimer.className = "clinical-disclaimer-box mt-4 text-center";
+                    clinicalDisclaimer.innerHTML = `
+                        <span class="text-success fw-bold fs-6 d-block mb-1">
+                            <i class="fa-solid fa-circle-check me-1"></i>Negative Diagnostic Indicator
+                        </span>
+                        <span class="text-light">
+                            The metrics align with non-cancerous/benign characteristics.
+                        </span>`;
                 }
             } catch (err) {
                 alert('Request failed: ' + err.message);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fa-solid fa-calculator me-2"></i>Run Prediction Diagnostic`;
+                submitBtn.innerHTML = `<i class="fa-solid fa-microscope me-2"></i>Run Prediction Diagnostic`;
             }
         });
     </script>
